@@ -4,7 +4,7 @@ class HomeController {
 
   int _jogadorVez = 1;
 
-  void atribuiValorMatriz(int linha, int coluna) {
+  void jogar(int linha, int coluna) {
     _tabuleiro[linha][coluna] = _jogadorVez;
     _jogadorVez = _jogadorVez % 2 == 0 ? 1 : 2;
   }
