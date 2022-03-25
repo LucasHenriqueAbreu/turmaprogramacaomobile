@@ -1,15 +1,17 @@
 class HomeController {
-  final List<List<int>> _tabuleiro =
-      List.generate(3, (_) => List.generate(3, (_) => 0));
+  final List<int> _tabuleiro =
+      List.generate(9, (_) => 0);
 
   int _jogadorVez = 1;
 
-  void jogar(int linha, int coluna) {
-    _tabuleiro[linha][coluna] = _jogadorVez;
+  void jogar(int index) {
+    _tabuleiro[index] = _jogadorVez;
     _jogadorVez = _jogadorVez % 2 == 0 ? 1 : 2;
   }
 
-  int obtemValorPosicao(int linha, int coluna) {
-    return _tabuleiro[linha][coluna];
+  int getValorPoisicao(int index) {
+    return _tabuleiro[index];
   }
+
+  int get tabluleiroLength => _tabuleiro.length;
 }

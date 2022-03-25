@@ -8,15 +8,12 @@ class ItemTabuleiro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          margin: const EdgeInsets.all(10),
-          color: Colors.orange,
-          child: Center(
-            child: Text(jogador.toString()),
-          ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        color: Colors.orange,
+        child: Center(
+          child: Text(jogador.toString()),
         ),
       ),
     );

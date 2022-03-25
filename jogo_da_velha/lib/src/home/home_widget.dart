@@ -12,58 +12,44 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print('passou aqui');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Jogo da velha'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(
-            child: Container(
-              child: _constroiLinha(0),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              child: _constroiLinha(1),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              child: _constroiLinha(2),
-            ),
-          ),
+          const Text('Teste'),
+          Expanded(child: _buildTabuleiro()),
+          const Text('Teste'),
         ],
       ),
     );
   }
 
-  Widget _constroiLinha(int indiceLinha) {
-    return Row(
-      children: [
-        ItemTabuleiro(
-            jogador: controller.obtemValorPosicao(indiceLinha, 0),
+  Widget _buildTabuleiro() {
+    return Center(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width / 3,
+        child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          itemCount: controller.tabluleiroLength,
+          itemBuilder: (context, index) => ItemTabuleiro(
+            jogador: controller.getValorPoisicao(index),
             onTap: () {
               setState(() {
-                controller.jogar(indiceLinha, 0);
+                controller.jogar(index);
               });
-            }),
-        ItemTabuleiro(
-            jogador: controller.obtemValorPosicao(indiceLinha, 1),
-            onTap: () {
-              setState(() {
-                controller.jogar(indiceLinha, 1);
-              });
-            }),
-        ItemTabuleiro(
-            jogador: controller.obtemValorPosicao(indiceLinha, 2),
-            onTap: () {
-              setState(() {
-                controller.jogar(indiceLinha, 2);
-              });
-            }),
-      ],
+            },
+          ),
+        ),
+      ),
     );
   }
 }
