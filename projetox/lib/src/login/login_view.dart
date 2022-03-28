@@ -82,7 +82,7 @@ class LoginView extends StatelessWidget {
     if (isValid) {
       _formKey.currentState!.save();
       if (email == 'teste@teste' && senha == '123123') {
-        Navigator.of(context).pushReplacementNamed('/home');
+        Navigator.pushReplacementNamed(context, '/home');
       } else {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Errou')));

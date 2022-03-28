@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projetox/src/home/home_view.dart';
+import 'package:projetox/src/home/one_view.dart';
+import 'package:projetox/src/home/tree_view.dart';
+import 'package:projetox/src/home/two_view.dart';
 import 'package:projetox/src/login/login_view.dart';
 
 class AppWidget extends StatelessWidget {
@@ -12,9 +15,12 @@ class AppWidget extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/':(context) => LoginView(),
-        '/home': (context) => HomeView()
-      },      
+        '/': (_) => LoginView(),
+        '/home': (_) => HomeView(),
+        '/one': (_) => OneView(),
+        '/two': (_) => TwoView(), 
+        '/tree': (_) => TreeView(), 
+      },
     );
   }
 }
