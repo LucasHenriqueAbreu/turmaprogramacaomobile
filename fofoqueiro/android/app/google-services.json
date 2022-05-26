@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "990795653047",
+    "project_id": "fofoqueiro",
+    "storage_bucket": "fofoqueiro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990795653047:android:620e3bc8ec218272f65232",
+        "android_client_info": {
+          "package_name": "br.edu.unidep.fofoqueiro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990795653047-hcf45ifutpaqdrhf49g5q0ucrki72ofu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK2yz3_fGFIgcg8fPaSSaISprzTItCIHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990795653047-hcf45ifutpaqdrhf49g5q0ucrki72ofu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
