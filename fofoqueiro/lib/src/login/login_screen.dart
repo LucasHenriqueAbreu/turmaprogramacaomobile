@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fofoqueiro/src/login/login_controller.dart';
+import 'package:fofoqueiro/src/services/auth_service.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Login'),
       ),
-      body: Consumer<LoginController>(
+      body: Consumer<AuthService>(
         builder: (_, loginController, __) {
           return Center(
             child: Text(
