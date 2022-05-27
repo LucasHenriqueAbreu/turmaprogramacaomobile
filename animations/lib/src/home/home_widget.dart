@@ -2,6 +2,8 @@ import 'package:animations/src/home/animations_views/animated_container_view.dar
 import 'package:flutter/material.dart';
 
 class HomeWidget extends StatefulWidget {
+  const HomeWidget({Key? key}) : super(key: key);
+
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
 }

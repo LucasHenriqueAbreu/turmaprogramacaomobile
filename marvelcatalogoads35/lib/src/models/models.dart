@@ -1,5 +1,5 @@
 class CharacterDataWrapper {
-  String? code;
+  int? code;
   String? status;
   String? copyright;
   String? attributionText;
