@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:fofoqueiro/src/errors/auth_exception.dart';
+import 'package:fofoqueiro/src/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  RegisterScreen({Key? key}) : super(key: key);
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final _email = TextEditingController();
   final _senha = TextEditingController();
+  final _confirmaSenha = TextEditingController();
+  late AuthService _authService;
+
+  @override
+  void initState() {
+    _authService = Provider.of<AuthService>(context, listen: false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Bem vindo',
+                    'Cadastro',
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(
@@ -48,23 +64,33 @@ class LoginScreen extends StatelessWidget {
                     validator: _validateInputSenha,
                   ),
                   const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                    controller: _confirmaSenha,
+                    decoration: const InputDecoration(
+                      label: Text('Confirma senha'),
+                      border: OutlineInputBorder(),
+                    ),
+                    obscureText: true,
+                    validator: _validateInputConfirmaSenha,
+                  ),
+                  const SizedBox(
                     height: 100,
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      print('Login');
-                    },
-                    child: const Text('Entrar'),
+                    onPressed: _cadastrarUsuario,
+                    child: const Text('Cadastrar'),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/register');
+                      print('object');
                     },
                     child: const Text(
-                      'Ainda não possui uma conta? Cadastre-se agora.',
+                      'Voltar para o login.',
                     ),
                   ),
                 ],
@@ -98,5 +124,36 @@ class LoginScreen extends StatelessWidget {
     }
 
     return null;
+  }
+
+  String? _validateInputConfirmaSenha(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Confirma senha é obrigatória';
+    }
+
+    if (value != _senha.text) {
+      return 'A confirmação de senha está diferente da senha';
+    }
+
+    return null;
+  }
+
+  Future<void> _cadastrarUsuario() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await _authService.createUser(_email.text, _senha.text);
+        _showMessage('Usuário cadastrado com sucesso.');
+      } on AuthException catch (e) {
+        _showMessage(e.message);
+      }
+    }
+  }
+
+  void _showMessage(String mensagem) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(mensagem),
+      ),
+    );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fofoqueiro/firebase_options.dart';
 import 'package:fofoqueiro/src/home/home_screen.dart';
 import 'package:fofoqueiro/src/login/login_screen.dart';
+import 'package:fofoqueiro/src/register/register_screen.dart';
 import 'package:fofoqueiro/src/services/auth_service.dart';
 import 'package:fofoqueiro/src/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           '/': (_) => const SplashScreen(),
           '/home': (_) => const HomeScreen(),
           '/login': (_) => LoginScreen(),
+          '/register': (_) => RegisterScreen()
         },
       ),
     );
